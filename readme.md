@@ -1,3 +1,4 @@
+# For CommonJS
 <p align="center">
   <img alt="Example usage" src="/media/demo.gif">
 </p>
@@ -28,7 +29,7 @@ You can use it to start building projects powered by ChatGPT like chatbots, webs
 ## Install
 
 ```bash
-npm install chatgpt
+npm install chatgpt-commonjs
 ```
 
 ## Usage
