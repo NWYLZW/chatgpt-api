@@ -1,6 +1,6 @@
 {
   "name": "chatgpt-commonjs",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Node.js client for the unofficial ChatGPT API.(for CommonJS)",
   "author": "YiJie <yijie4188@gmail.com>",
   "repository": "NWYLZW/chatgpt-api",
