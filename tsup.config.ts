@@ -1,30 +1,28 @@
 import { defineConfig } from 'tsup'
 
+const common = {
+  entry: ['src/index.ts'],
+  splitting: false,
+  sourcemap: true,
+  minify: false,
+  shims: true,
+  dts: true,
+  external: ['undici']
+}
+
 export default defineConfig([
   {
-    entry: ['src/index.ts'],
+    ...common,
     outDir: 'build',
     target: 'node16',
     platform: 'node',
-    format: ['esm'],
-    splitting: false,
-    sourcemap: true,
-    minify: false,
-    shims: true,
-    dts: true,
-    external: ['undici']
+    format: ['esm', 'cjs']
   },
   {
-    entry: ['src/index.ts'],
+    ...common,
     outDir: 'build/browser',
     target: 'chrome89',
     platform: 'browser',
-    format: ['esm'],
-    splitting: false,
-    sourcemap: true,
-    minify: false,
-    shims: true,
-    dts: true,
-    external: ['undici']
+    format: ['esm']
   }
 ])
