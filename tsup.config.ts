@@ -16,7 +16,15 @@ export default defineConfig([
     outDir: 'build',
     target: 'node16',
     platform: 'node',
-    format: ['esm', 'cjs']
+    format: ['esm']
+  },
+  {
+    ...common,
+    outDir: 'build',
+    target: 'node14',
+    platform: 'node',
+    format: ['cjs'],
+    noExternal: ['p-timeout', 'strip-markdown']
   },
   {
     ...common,
