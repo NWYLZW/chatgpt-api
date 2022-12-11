@@ -52,7 +52,7 @@ export class ChatGPTAPI {
   }) {
     const {
       sessionToken,
-      markdown = true,
+      markdown = false,
       apiBaseUrl = 'https://chat.openai.com/api',
       backendApiBaseUrl = 'https://chat.openai.com/backend-api',
       userAgent = USER_AGENT,
@@ -146,7 +146,7 @@ export class ChatGPTAPI {
         },
         body: JSON.stringify(body),
         signal: abortSignal,
-        onMessage: (data: string) => {
+        onMessage: async (data: string) => {
           if (data === '[DONE]') {
             return resolve(response)
           }
@@ -165,7 +165,7 @@ export class ChatGPTAPI {
 
               if (text) {
                 if (!this._markdown) {
-                  text = markdownToText(text)
+                  text = await markdownToText(text)
                 }
 
                 response = text
