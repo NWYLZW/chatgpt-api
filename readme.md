@@ -183,6 +183,7 @@ All of these awesome projects are built using the `chatgpt` package. 🤯
 - [Discord Bot #1](https://github.com/onury5506/Discord-ChatGPT-Bot)
 - [Discord Bot #2](https://github.com/Nageld/ChatGPT-Bot)
 - [Discord Bot #3](https://github.com/leinstay/gptbot)
+- [Discord Bot #4 (selfbot)](https://github.com/0x7030676e31/cumsocket)
 - [WeChat Bot #1](https://github.com/AutumnWhj/ChatGPT-wechat-bot)
 - [WeChat Bot #2](https://github.com/fuergaosi233/wechat-chatgpt)
 - [WeChat Bot #3](https://github.com/wangrongding/wechat-bot)
@@ -197,9 +198,11 @@ All of these awesome projects are built using the `chatgpt` package. 🤯
 - [Flutter ChatGPT API](https://github.com/coskuncay/flutter_chatgpt_api)
 - [Carik Bot](https://github.com/luridarmawan/Carik)
 - [Github Action for reviewing PRs](https://github.com/kxxt/chatgpt-action/)
-- [WhatsApp Bot](https://github.com/amosayomide05/chatgpt-whatsapp-bot)
+- [WhatsApp Bot #1](https://github.com/pascalroget/whatsgpt) (multi-user support)
+- [WhatsApp Bot #2](https://github.com/amosayomide05/chatgpt-whatsapp-bot)
 - [Matrix Bot](https://github.com/jakecoppinger/matrix-chatgpt-bot)
 - [Rental Cover Letter Generator](https://sharehouse.app/ai)
+- [Assistant CLI](https://github.com/diciaup/assistant-cli)
 
 If you create a cool integration, feel free to open a PR and add it to the list.
 
