@@ -1,4 +1,43 @@
 # For CommonJS
+# Update December 11, 2022
+
+Today, OpenAI added additional Cloudflare protections that make it more difficult to access the unofficial API. _This is affecting all ChatGPT API wrappers at the moment_, including the Python ones. See [this issue](https://github.com/transitive-bullshit/chatgpt-api/issues/96).
+
+**As a temporary workaround**, make sure you're using the latest version of this package and Node.js >= 18:
+
+1. Log into https://chat.openai.com/chat and copy a fresh session token (same instructions as below).
+
+2. Copy the value of the `cf_clearance` cookie and store it in a `CLEARANCE_TOKEN` environment variable in addition to your `SESSION_TOKEN`.
+
+3. Copy your browser's `user-agent` header from any request in your browser's network tab.
+
+4. Use both tokens when creating the API wrapper:
+
+```ts
+const api = new ChatGPTApI({
+  sessionToken: process.env.SESSION_TOKEN,
+  clearanceToken: process.env.CLEARANCE_TOKEN,
+  userAgent: '' // replace to match your real browser's user agent
+})
+
+await api.ensureAuth()
+```
+
+Restrictions on this method:
+
+- Cloudflare `cf_clearance` **tokens expire after 2 hours**, so right now you'll have to manually log in and extract it by hand every so often
+- Your `user-agent` and `IP address` **must match** from the real browser window you're logged in with to the one you're using for `ChatGPTAPI`.
+  - This means that you currently can't log in with your laptop and then run the bot on a server or proxy somewhere.
+- You must use `node >= 18`. I'm using `v19.2.0` in my testing, but for some reason, all `fetch` requests using Node.js `v16` and `v17` fail at the moment (these use `undici` under the hood, whereas Node.js v18 and above use a built-in `fetch` based on `undici`).
+- You should not be using this account while the bot is using it, because that browser window may refresh one of your tokens and invalidate the bot's session.
+
+We're working hard in [this issue](https://github.com/transitive-bullshit/chatgpt-api/issues/96) to make this process easier and more automated.
+
+Cheers,
+Travis
+
+---
+
 <p align="center">
   <img alt="Example usage" src="/media/demo.gif">
 </p>
@@ -9,16 +48,17 @@
 
 [![NPM](https://img.shields.io/npm/v/chatgpt.svg)](https://www.npmjs.com/package/chatgpt) [![Build Status](https://github.com/transitive-bullshit/chatgpt-api/actions/workflows/test.yml/badge.svg)](https://github.com/transitive-bullshit/chatgpt-api/actions/workflows/test.yml) [![MIT License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/transitive-bullshit/chatgpt-api/blob/main/license) [![Prettier Code Formatting](https://img.shields.io/badge/code_style-prettier-brightgreen.svg)](https://prettier.io)
 
-- [Intro](#intro)
-- [Install](#install)
-- [Usage](#usage)
-  - [Docs](#docs)
-  - [Demos](#demos)
-  - [Session Tokens](#session-tokens)
-- [Projects](#projects)
-- [Compatibility](#compatibility)
-- [Credits](#credits)
-- [License](#license)
+- [Update December 11, 2022](#update-december-11-2022)
+  - [Intro](#intro)
+  - [Install](#install)
+  - [Usage](#usage)
+    - [Docs](#docs)
+    - [Demos](#demos)
+    - [Session Tokens](#session-tokens)
+  - [Projects](#projects)
+  - [Compatibility](#compatibility)
+  - [Credits](#credits)
+  - [License](#license)
 
 ## Intro
 
@@ -203,6 +243,7 @@ All of these awesome projects are built using the `chatgpt` package. 🤯
 - [Matrix Bot](https://github.com/jakecoppinger/matrix-chatgpt-bot)
 - [Rental Cover Letter Generator](https://sharehouse.app/ai)
 - [Assistant CLI](https://github.com/diciaup/assistant-cli)
+- [Teams Bot](https://github.com/formulahendry/chatgpt-teams-bot)
 
 If you create a cool integration, feel free to open a PR and add it to the list.
 
